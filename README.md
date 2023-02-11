@@ -1,6 +1,25 @@
 # Article(nodejs-project)
-This project is based on RESTfull Api .
+This project is based on RESTfull Api .A RESTful API (Representational State Transfer API) is a type of API that uses HTTP requests to GET, PUT, POST, and DELETE data. A RESTful API is created by defining the endpoints (or routes), which are the URLs that handle the incoming HTTP requests.
+
+A RESTful API uses the following operations to retrieve and manipulate data:
+
+1) GET: Used to retrieve data from the API.
+
+2) POST: Used to send data to the API to be processed and stored.
+
+3) PUT: Used to update existing data in the API.
+
+4) PATCH: Partially updates the resource
+
+5) DELETE: Used to delete data from the API.
+
+These operations are performed by sending HTTP requests to the API's endpoints. The endpoints return a response in the form of a JSON or XML data, which can be processed by the client.A RESTful API is a type of API that allows the client to interact with the server through well-defined endpoints that handle the incoming HTTP requests, and the server returns a response in the form of a JSON or XML data. 
+
+## put vs patch 
+![image](https://user-images.githubusercontent.com/116658648/218280799-3fc11ca1-30ab-4468-8de4-caa1081fe73a.png)
+
 ## Dependencies for this project.
+
 ### To create this project install these dependencies in your system by following these commands given bellow :-
 1. Install node using given bellow command in terminal.
 ```ruby
