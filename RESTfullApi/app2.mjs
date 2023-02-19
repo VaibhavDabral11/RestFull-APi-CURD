@@ -56,10 +56,10 @@ app.get("/create", async(req, res) => {
     console.log(many);
 });
 //2. create == post(Api: 2)(input using postman)
-app.post("/inputcreate", async(req, res) => {
+app.post("/inputcreate", async(req, res) => {   // async function by using await (do not distub other functions ) which return promice
     console.log({ "Received Data from Client": req.body })
-    const { id, Title, Author, Content, Rating } = req.body;
-    const result = await prisma.Article1_Table.createMany({
+    const { id, Title, Author, Content, Rating } = req.body; //requset to acquire the data from the "/inputcreate" end point
+    const result = await prisma.Article1_Table.createMany({  
         data: {
             id,
             Title,
@@ -111,7 +111,7 @@ app.patch("/updaterecord1", async(req, res) => {
 app.delete("/deleterecord", async(req, res) => {
     console.log({ "Received Data from Client": req.body })
     const { id } = req.body;
-    const delet = await prisma.Article1_Table.delete({
+    const delet = await prisma.Article1_Table.delete({ 
         where: {
             id,
         },
