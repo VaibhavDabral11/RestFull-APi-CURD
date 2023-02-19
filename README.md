@@ -28,14 +28,116 @@ A RESTful API uses the following operations to retrieve and manipulate data:
 
 1) GET: Used to retrieve data from the API.
 
+``` @ruby 
+//1. read == get(Api: 1)
+app.get("/readall", async(req, res) => {
+    const users = await prisma.Article1_Table.findMany();
+    res.json(users);
+    console.log(users);
+
+});
+//2. create == post(Api: 2)(Manually)
+app.get("/create", async(req, res) => {
+    const many = await prisma.Article1_Table.createMany({
+        data: [{
+            id: 1,
+            Title: "Coding Habits",
+            Author: " Robon Gupta",
+            Content: "Article based on coding habits",
+            Rating: 8
+        }, {
+            id: 2,
+            Title: "Bug",
+            Author: "Manav Gupta",
+            Content: "Article based on type of bugs",
+            Rating: 9
+        }],
+    });
+    res.json(many);
+    console.log(many);
+});
+```
+
 2) POST: Used to send data to the API to be processed and stored.
 
+```@ruby 
+//2. create == post(Api: 2)(input using postman)
+app.post("/inputcreate", async(req, res) => {   // async function by using await (do not distub other functions ) which return promice
+    console.log({ "Received Data from Client": req.body })
+    const { id, Title, Author, Content, Rating } = req.body; //requset to acquire the data from the "/inputcreate" end point
+    const result = await prisma.Article1_Table.createMany({  
+        data: {
+            id,
+            Title,
+            Author,
+            Content,
+            Rating,
+        },
+    });
+    res.json(result);
+    console.log(result);
+});
+```
 3) PUT: Used to update existing data in the API.
+```@ruby 
+//3. update == put(Api: 3)
+app.put("/updaterecord", async(req, res) => {
+    console.log({ "Received Data from Client": req.body })
+    const { id, Title, Author, Content, Rating } = req.body;
+    const up = await prisma.Article1_Table.update({
+        where: {
+            id
+        },
+        data: {
+            Title,
+            Author,
+            Content,
+            Rating,
+        },
+    });
+    res.json(up);
+    console.log(up);
+});
+```
 
-4) PATCH: Partially updates the resource
+4) PATCH: Partially updates the resource.
 
+```@ruby 
+//4. update == patch(Api: 4)
+app.patch("/updaterecord1", async(req, res) => {
+    console.log({ "Received Data from Client": req.body })
+    const { id, Title, Author, Content, Rating } = req.body;
+    const up = await prisma.Article1_Table.update({
+        where: {
+            id
+        },
+        data: {
+            Title,
+            Author,
+            Content,
+            Rating,
+        },
+    });
+    res.json(up);
+    console.log(up);
+});
+```
 5) DELETE: Used to delete data from the API.
 
+```@ruby
+//5. Delete == delete(Api: 5)
+app.delete("/deleterecord", async(req, res) => {
+    console.log({ "Received Data from Client": req.body })
+    const { id } = req.body;
+    const delet = await prisma.Article1_Table.delete({ 
+        where: {
+            id,
+        },
+    });
+    res.json(delet);
+    console.log(delet);
+});
+```
 These operations are performed by sending HTTP requests to the API's endpoints. The endpoints return a response in the form of a JSON or XML data, which can be processed by the client.A RESTful API is a type of API that allows the client to interact with the server through well-defined endpoints that handle the incoming HTTP requests, and the server returns a response in the form of a JSON or XML data. 
 
 ## put vs patch 
