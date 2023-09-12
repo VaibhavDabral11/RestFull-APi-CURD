@@ -58,7 +58,7 @@ app.get("/create", async(req, res) => {
 });
 ```
 
-2) POST: Used to send data to the API to be processed and stored.
+2) POST: Used to send data to the API to be processed and stored.[This api is also use when you find/print data on the basics of flag{where condition}]
 
 ```@ruby 
 //2. create == post(Api: 2)(input using postman)
@@ -77,6 +77,26 @@ app.post("/inputcreate", async(req, res) => {   // async function by using await
     res.json(result);
     console.log(result);
 });
+```
+```@ruby
+//typescript
+  const l1Agents = await prisma.agents.findMany({
+                    where: { role: role }
+                })
+                res.json({
+                    Status: "SUCCESS",
+                    Message: "L1 data",
+                    data: l1Agents
+                })
+            } catch (error) {
+                res.json({
+                    Status: "FAIL",
+                    Message: "L1 data"
+                })
+                console.log("L1 user is not working" + error)
+
+            }
+        }
 ```
 3) PUT: Used to update existing data in the API.
 ```@ruby 
